@@ -3,12 +3,13 @@ public class ShoppingBasket<Item> implements IBag<Item>{
 	
 	private Item[] SB;
 	private int lastIndex;
-	private int SB_CAPACITY = 2000;
+	private int SB_CAPACITY;
 	
-	public ShoppingBasket() {
+	public ShoppingBasket(int capacity) {
 		Item[] tmpBag = (Item[]) new Object[11];
 		SB = tmpBag;
 		lastIndex = 0;
+		SB_CAPACITY = capacity;
 	}
 	
 	public int getSB_size() {
@@ -44,7 +45,7 @@ public class ShoppingBasket<Item> implements IBag<Item>{
 		}
 	
 	public boolean isFull() {
-		return (SB_CAPACITY <= 0);
+		return (SB_CAPACITY == 0);
 		}
 	
 	public Item removeByIndex(int index) {
@@ -72,16 +73,6 @@ public class ShoppingBasket<Item> implements IBag<Item>{
 		int index = getIndexOf(item);
 		Item result = removeByIndex(index);
 		return result;
-		}
-
-	public int getItemCount(Item item) {
-		int count = 0;
-		for (int index=0; index<lastIndex; index++) {
-			if(item.equals(SB[index])) {
-				count++;
-				}
-			}
-		return count;
 		}
 	
 	public int getIndexOf(Item item) {
