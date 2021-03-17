@@ -1,15 +1,25 @@
 
 public class Item {
+	private int number;
 	private String name;
 	private String compartment;
 	private int weight;
 
-	public Item(String name, String compartment, int weight) {
+	public Item(int number, String name, String compartment, int weight) {
+		this.number = number;
 		this.name = name;
 		this.compartment = compartment;
 		this.weight = weight;
 	}
 	
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
 	public String getCompartment() {
 		return compartment;
 	}
@@ -35,8 +45,10 @@ public class Item {
 	}
 	
 	public boolean equals(Object Obj){
-		// iþlem yapýlacak
-        return true;
+		Item other = (Item) Obj;
+		if (this.name.equals(other.name) && this.compartment.equals(other.compartment)) {
+			return true;
+		} else { return false; }
     }
 	
 	public String toString(){
