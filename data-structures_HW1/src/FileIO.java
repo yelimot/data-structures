@@ -13,7 +13,7 @@ public class FileIO {
 			while (myReader.hasNextLine()) {
 				String data = myReader.nextLine();
 				String[] arrOfStr = data.split(",", 3);
-				Item item = new Item(arrOfStr[0],arrOfStr[1],Integer.parseInt(arrOfStr[2]));
+				Item item = new Item(i+1, arrOfStr[0], arrOfStr[1], Integer.parseInt(arrOfStr[2]));
 				inventoryBag[i] = item;
 				i++;
 			}
@@ -23,4 +23,5 @@ public class FileIO {
 			}
 			return inventoryBag;
 	    }
+
 }
