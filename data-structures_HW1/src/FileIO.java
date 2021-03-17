@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class FileIO {
 	FileIO(){}
 	    public static Item[] readInventory() {
-			Item[] inventoryBag = (Item[]) new Object[14];
+			Item[] inventoryBag = new Item[14];
 			try{
 			File myObj = new File("inventory.txt");
 			Scanner myReader = new Scanner(myObj);

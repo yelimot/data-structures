@@ -2,18 +2,16 @@ import java.util.Scanner;
 
 public class ShoppingApp {
 	public static void main(String[] args) {
-		
+	
 		Item[] invBag;
-		
 		invBag = FileIO.readInventory();
-		System.out.println("ramo");
-		
 		IBag<Item> s_b = new ShoppingBasket(2000);
 		IBag<Item> m_c = new MeatsCompartment(5000);
 		IBag<Item> s_c = new SnacksCompartment(2000);
 		IBag<Item> b_c = new BevaragesCompartment(4000);
 		IBag<Item> vf_c = new VegetablesFruitsCompartment(3000);
 
+		
 
 		while(true){
 			Scanner userInput = new Scanner(System.in);
@@ -31,9 +29,10 @@ public class ShoppingApp {
 					System.out.println("[3]Finish shopping");
 					int userOption2 = userInput.nextInt();  // Read user input
 					if(userOption2 == 1){
+						
 						System.out.println("Please select an item: ");
 						for (int i = 0; i < invBag.length; i++) {
-							System.out.println("["+i+"] "+ invBag[i].getName());
+							System.out.println("["+ i +"] "+ invBag[i]);
 						}
 						int selectItem = userInput.nextInt();
 						
@@ -41,6 +40,7 @@ public class ShoppingApp {
 						// Stub waits operations.
 						// itemi seçince baskete ekleme işlemi yapılacak
 						// if basket == full ise break.
+
 						}
 					else if(userOption2 == 2){
 						// prints basket 
@@ -54,14 +54,16 @@ public class ShoppingApp {
 					}
 			
 			}
-			else if(userOption == 2){
+			else if(userOption1 == 2){
 				// Remaning capatity'ler gösterilecek
 				// Örneğin meets 2000 , snacks 320 gibi gibi
+				System.out.println("optin2");
 				}
 			else{
 				// optin == 3 yani exit işlemi.
 				break;
 			}
+			break;
 		}
 		
 	}

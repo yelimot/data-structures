@@ -1,12 +1,12 @@
 
-public class MeatsCompartment<Item> implements IBag<Item>{
+public class MeatsCompartment implements IBag<Item>{
 	
 	private Item[] MC;
 	private int lastIndex;
 	private int MC_CAPACITY;
 	
 	public MeatsCompartment(int capacity) {
-		Item[] tmpBag = (Item[]) new Object[11];
+		Item[] tmpBag = new Item[11];
 		MC = tmpBag;
 		lastIndex = 0;
 		MC_CAPACITY = capacity;
@@ -22,14 +22,16 @@ public class MeatsCompartment<Item> implements IBag<Item>{
 	
 	public boolean add(Item newItem) {
 		boolean result = true;
-		if (newItem.getWeight() > MC_CAPACITY) {
+		
+		if (isFull()) {
+			System.out.println("Compartment is full.");
+			result = false ;
+			}
+
+		else if (newItem.getWeight() > MC_CAPACITY) {
 			System.out.println("Item weight exceeds remaining capacity.");
 			result = false;
-			}
 			
-		else if (isFull()) {
-			result = false;
-			System.out.println("Compartment is full.");
 			}
 		else {
 			MC[lastIndex] = newItem;
@@ -45,7 +47,10 @@ public class MeatsCompartment<Item> implements IBag<Item>{
 		}
 	
 	public boolean isFull() {
-		return (MC_CAPACITY <= 0);
+		if (MC_CAPACITY == 0){
+			return true;
+		}
+		return false;
 		}
 	
 	public Item removeByIndex(int index) {

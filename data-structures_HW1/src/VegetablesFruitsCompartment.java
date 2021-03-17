@@ -1,12 +1,12 @@
 
-public class VegetablesFruitsCompartment<Item> implements IBag<Item> {
+public class VegetablesFruitsCompartment implements IBag<Item> {
 
     private Item[] VFC;
 	private int lastIndex;
 	private int VFC_CAPACITY;
 	
 	public VegetablesFruitsCompartment(int capacity) {
-		Item[] tmpBag = (Item[]) new Object[11];
+		Item[] tmpBag = new Item[11];
 		VFC = tmpBag;
 		lastIndex = 0;
 		VFC_CAPACITY = capacity;
@@ -20,16 +20,18 @@ public class VegetablesFruitsCompartment<Item> implements IBag<Item> {
 		VFC_CAPACITY = VFC_size;
 	}
 
-    public boolean add(Item newItem) {
+	public boolean add(Item newItem) {
 		boolean result = true;
-		if (newItem.getWeight() > VFC_CAPACITY) {
+		
+		if (isFull()) {
+			System.out.println("Compartment is full.");
+			result = false ;
+			}
+
+		else if (newItem.getWeight() > VFC_CAPACITY) {
 			System.out.println("Item weight exceeds remaining capacity.");
 			result = false;
-			}
 			
-		else if (isFull()) {
-			result = false;
-			System.out.println("Compartment is full.");
 			}
 		else {
 			VFC[lastIndex] = newItem;
@@ -45,8 +47,12 @@ public class VegetablesFruitsCompartment<Item> implements IBag<Item> {
 		}
 	
 	public boolean isFull() {
-		return (VFC_CAPACITY <= 0);
+		if (VFC_CAPACITY == 0){
+			return true;
 		}
+		return false;
+		}
+
 	public Item removeByIndex(int index) {
 		Item result = null;
 		if(!isEmpty() && index >= 0) {
