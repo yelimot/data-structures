@@ -1,9 +1,9 @@
 
 public class VegetablesFruitsCompartment implements IBag<Item> {
 
-    private Item[] VFC;
-	private int lastIndex;
-	private int VFC_CAPACITY;
+    public Item[] VFC;
+	public int lastIndex;
+	public int VFC_CAPACITY;
 	
 	public VegetablesFruitsCompartment(int capacity) {
 		Item[] tmpBag = new Item[11];
@@ -12,13 +12,29 @@ public class VegetablesFruitsCompartment implements IBag<Item> {
 		VFC_CAPACITY = capacity;
 	}
 
-    public int getVFC_size() {
-		return VFC_CAPACITY;
-	}
-
-	public void setVFC_size(int VFC_size) {
-		VFC_CAPACITY = VFC_size;
-	}
+//	public Item[] getVFC() {
+//		return VFC;
+//	}
+//
+//	public void setVFC(Item[] vFC) {
+//		VFC = vFC;
+//	}
+//
+//	public int getLastIndex() {
+//		return lastIndex;
+//	}
+//
+//	public void setLastIndex(int lastIndex) {
+//		this.lastIndex = lastIndex;
+//	}
+//
+//	public int getVFC_CAPACITY() {
+//		return VFC_CAPACITY;
+//	}
+//
+//	public void setVFC_CAPACITY(int vFC_CAPACITY) {
+//		VFC_CAPACITY = vFC_CAPACITY;
+//	}
 
 	public boolean add(Item newItem) {
 		boolean result = true;
@@ -31,7 +47,6 @@ public class VegetablesFruitsCompartment implements IBag<Item> {
 		else if (newItem.getWeight() > VFC_CAPACITY) {
 			System.out.println("Item weight exceeds remaining capacity.");
 			result = false;
-			
 			}
 		else {
 			VFC[lastIndex] = newItem;

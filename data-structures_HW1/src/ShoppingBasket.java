@@ -35,14 +35,14 @@ public class ShoppingBasket implements IBag<Item>{
 		else {
 			SB[lastIndex] = newItem;
 			lastIndex++; 
-			System.out.println(newItem.getName() + "is added to the basket.");			
+			System.out.println(newItem.getName() + " is added to the basket.");			
 			SB_CAPACITY -= newItem.getWeight();
 			}
 		return result;
 		}
 	
 	public boolean isEmpty() {
-		return (lastIndex == 0);
+		return (SB_CAPACITY == 2000);
 		}
 	
 	public boolean isFull() {
@@ -67,6 +67,7 @@ public class ShoppingBasket implements IBag<Item>{
 		Item result = null;
 		if(lastIndex > 0) {
 			result = SB[lastIndex - 1];
+			this.SB_CAPACITY += result.getWeight(); // yeni ekledim
 			SB[lastIndex - 1] = null;
 			lastIndex--;
 			}
@@ -100,11 +101,11 @@ public class ShoppingBasket implements IBag<Item>{
 	public void displayItems() {
 		int i = 0;
 		while(SB[i] != null) {
-			if(!SB[i].equals(SB[i+1]))
-				System.out.println(SB[i].toString());
+			System.out.println(SB[i].getName());
 			i++;
-			}
 		}
+	}
+			
 
 	public void dump() {
 		while(!isEmpty()) {
@@ -112,6 +113,7 @@ public class ShoppingBasket implements IBag<Item>{
 		}
 	}
 	
+	// bu basket dolana kadar dolaba yerleþtirecek.
 	public boolean transferTo(IBag<Item> targetBag, Item item) {
 		if(this.contains(item)) {
 			targetBag.add(item);
