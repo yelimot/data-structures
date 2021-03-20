@@ -1,17 +1,17 @@
 public class BasketCompartment implements IBag<Item>{
 	
-	private Item[] IArray;
+	private Item[] IArray; //Basket array
 	private int NumberOfItems;
 	private int CAPACITY;
 	
-	public BasketCompartment(int capacity) {
+	public BasketCompartment(int capacity) { // constructor of this class
 		Item[] tmpBag = new Item[35];
 		IArray = tmpBag;
 		NumberOfItems = 0;
 		CAPACITY = capacity;
 	}
 	
-	public Item[] getIArray() {
+	public Item[] getIArray() { // some getter and setter methods (14- 34)
 		return IArray;
 	}
 
@@ -35,7 +35,7 @@ public class BasketCompartment implements IBag<Item>{
 		CAPACITY = cAPACITY;
 	}
 
-	public boolean add(Item newItem) {
+	public boolean add(Item newItem) { // add item to basket array
 		boolean result = true;
 		
 		if (isFull()) {
@@ -56,14 +56,14 @@ public class BasketCompartment implements IBag<Item>{
 		return result;
 	}
 	
-	public boolean isFull() {
+	public boolean isFull() { //checks basket weight is full or not
 		if (CAPACITY == 0){
 			return true;
 		}
 		return false;
 	}
 	
-	public void displayItems() {
+	public void displayItems() { //displays name of the items inside the basket
 		int i = 0;
 		while(IArray[i] != null) {
 			System.out.println(IArray[i].getName());
@@ -71,7 +71,7 @@ public class BasketCompartment implements IBag<Item>{
 		}
 	}
 
-	public void dump() {
+	public void dump() { // dumps items inside the basket
 		for(int i = 0; i < NumberOfItems; i++) {
 			IArray[i]=null;
 		}

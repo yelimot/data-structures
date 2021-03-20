@@ -1,46 +1,42 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.io.FileNotFoundException;  // Imports necessary dependency 
 import java.io.FileReader;
 import java.io.IOException;
 
 public class FileIO {
-	public FileIO(){}
+	public FileIO(){} // constructor for fileıo
 
 	        public static Item[] readInventory() {
-			Item[] inventoryBag = new Item[14];
+			Item[] inventoryBag = new Item[14]; //creates inventory bag
 			
 			FileReader FReader;
 			BufferedReader BReader;
 			
-			try{
-			FReader = new FileReader("C:\\Users\\myasa\\eclipse-workspace\\data-structures_HW1\\src\\inventory.txt");
+			try{ // file read operations
+			FReader = new FileReader("../inventory.txt");
 			BReader = new BufferedReader(FReader);
 			String line = BReader.readLine();
 			
 			int i = 0;
 			while (line != null) {
 				String[] arrOfStr = line.split(",", 3);
-				Item item = new Item(i+1, arrOfStr[0], arrOfStr[1], Integer.parseInt(arrOfStr[2]));
-				inventoryBag[i] = item;
+				Item item = new Item(i+1, arrOfStr[0], arrOfStr[1], Integer.parseInt(arrOfStr[2])); //creates items
+				inventoryBag[i] = item; // adds item to inventory bag
 				i++;
 				line = BReader.readLine();
 				}
 			
-			}
-//			catch(FileNotFoundException e){
-//				System.out.println("T");
-//			}
-			
-			
-			catch(FileNotFoundException ex){
+			}			
+			catch(FileNotFoundException ex){ // catchs exception
 				 System.out.println("File is not found.");
 			 }
 			 catch(IOException ex) {
-				 System.out.println("Error is not found.");
+				 System.out.println("Error is found.");
 			 }
+			
 
   
-			return inventoryBag;
+			return inventoryBag; // returns inventory bag
 	    }
 
 }
