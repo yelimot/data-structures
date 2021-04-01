@@ -2,7 +2,7 @@
 public class Product implements IProduct {
 	
 	private String name;
-	private int productNo; // random number oluþtururken belki kolaylýk saðlar
+	private int productNo; // random number olustururken belki kolaylik saglar
 	
 	public Product(String name, int productNo) {
 		this.name = name;

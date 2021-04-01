@@ -1,13 +1,11 @@
 
 public class ProductionLine<T> implements IQueue<T> {
 	
-	private T[] queue;
+	public T[] queue; // constructor yazılacak.
 	private int frontIndex;
 	private int backIndex;
 	
-	public ProductionLine() {}
-	
-	public ProductionLine(int size) {		
+	public ProductionLine(int size){		
 			@SuppressWarnings("unchecked")
 			T[] tempQueue = (T[]) new Object[size+1];
 			queue = tempQueue;
@@ -18,7 +16,7 @@ public class ProductionLine<T> implements IQueue<T> {
 	public void enqueue(T newEntry) {
 		ensureCapacity();
 		backIndex = (backIndex + 1) % queue.length;
-		queue[backIndex] = newEntry;
+		queue[backIndex] = newEntry; 
 	}
 
 	public T dequeue() {
@@ -49,7 +47,7 @@ public class ProductionLine<T> implements IQueue<T> {
 		}	
 	}
 	
-	private void ensureCapacity() {		
+	private void ensureCapacity() {		// 
 			if(frontIndex == (backIndex + 2) % queue.length) {
 				T[] oldQueue = queue;
 				int oldSize = oldQueue.length;
