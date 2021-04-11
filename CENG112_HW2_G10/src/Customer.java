@@ -5,73 +5,73 @@ public class Customer <T> {
 	
 	public Customer() {} // constructor
 	
+
+	public void operation(boolean isEmpty, IProduct product){
+		if(!isEmpty){
+			System.out.println("Customer buying "+product.getName()+
+			", SUCCESS, Customer bought "+product.getName());
+		}
+		else{
+			System.out.println("Customer buying "+product.getName()+
+			", FAIL,"+product.getName()+" warehouse is empty");
+		}
+	}
+
 	// Request a product (since requested product will deleted from related warehouse after buying, 
 	// storage chief also a parameter for this function). 
 	public void request(StorageChief<T> storage, IProduct product) {
-		if( ((IProduct)product).getName() == "Sofa" ){
+		if( ((IProduct)product).getName().equals("Sofa")){
 			if(!storage.sofaWarehouse.isEmpty()) {
 				userWarehouse.push(storage.sofaWarehouse.pop()); // one line - 2 functions (pop from warehouse, push to userWarehouse)
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", SUCCESS, Customer bought "+((IProduct)product).getName());
+				operation(false, (IProduct)product);
 			}
-			else {
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", FAIL,"+((IProduct)product).getName()+" warehouse is empty");
+		else {
+				operation(true, (IProduct)product);
 			}
 		}
-		else if( ((IProduct)product).getName() == "Bed" ){
+		else if( ((IProduct)product).getName().equals("Bed" )){
 			if(!storage.bedWarehouse.isEmpty()) {
 				userWarehouse.push(storage.bedWarehouse.pop());
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", SUCCESS, Customer bought "+((IProduct)product).getName());
+				operation(false, (IProduct)product);
 			}
 			else {
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", FAIL,"+((IProduct)product).getName()+" warehouse is empty");
+				operation(true, (IProduct)product);
 			}
 		}
-		else if( ((IProduct)product).getName() == "Chair" ){
+		else if( ((IProduct)product).getName().equals("Chair")){
 			if(!storage.chairWarehouse.isEmpty()) {
 				userWarehouse.push(storage.chairWarehouse.pop());
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", SUCCESS, Customer bought "+((IProduct)product).getName());
+				operation(false, (IProduct)product);
 			}
 			else {
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", FAIL,"+((IProduct)product).getName()+" warehouse is empty");
+				operation(true, (IProduct)product);
 			}
 		}
-		else if( ((IProduct)product).getName() == "Dresser" ){
+		else if( ((IProduct)product).getName().equals("Dresser" )){
 			if(!storage.dresserWarehouse.isEmpty()) {
 				userWarehouse.push(storage.dresserWarehouse.pop());
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", SUCCESS, Customer bought "+((IProduct)product).getName());
+				operation(false, (IProduct)product);
 			}
 			else {
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", FAIL,"+((IProduct)product).getName()+" warehouse is empty");
+				operation(true, (IProduct)product);
 			}
 		}
-		else if( ((IProduct)product).getName() == "Table" ){
+		else if( ((IProduct)product).getName().equals("Table" )){
 			if(!storage.tableWarehouse.isEmpty()) {
 				userWarehouse.push(storage.tableWarehouse.pop());
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", SUCCESS, Customer bought "+((IProduct)product).getName());
+				operation(false, (IProduct)product);
 			}
 			else {
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", FAIL,"+((IProduct)product).getName()+" warehouse is empty");
+				operation(true, (IProduct)product);
 			}
 		}
-		else if( ((IProduct)product).getName() == "Bookcase" ){
+		else if( ((IProduct)product).getName().equals("Bookcase")){
 			if(!storage.bookcaseWarehouse.isEmpty()) {
 				userWarehouse.push(storage.bookcaseWarehouse.pop()); 
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", SUCCESS, Customer bought "+((IProduct)product).getName());
+				operation(false, (IProduct)product);
 			}
 			else {
-				System.out.println("Customer buying "+((IProduct)product).getName()+
-						", FAIL,"+((IProduct)product).getName()+" warehouse is empty");
+				operation(true, (IProduct)product);
 			}
 		}
 	}
@@ -87,27 +87,27 @@ public class Customer <T> {
 		
 		int i = 0;
 		while(userWarehouse.getStack()[i] != null) {
-			if(((IProduct)userWarehouse.getStack()[i]).getName() == "Bed") {
+			if(((IProduct)userWarehouse.getStack()[i]).getName().equals("Bed")) {
 				bedNo++;
 				i++;
 			}
-			else if(((IProduct)userWarehouse.getStack()[i]).getName() == "Sofa") {
+			else if(((IProduct)userWarehouse.getStack()[i]).getName().equals("Sofa")) {
 				sofaNo++;
 				i++;
 			}
-			else if(((IProduct)userWarehouse.getStack()[i]).getName() == "Dresser") {
+			else if(((IProduct)userWarehouse.getStack()[i]).getName().equals("Dresser")) {
 				dresserNo++;
 				i++;
 			}
-			else if(((IProduct)userWarehouse.getStack()[i]).getName() == "Table") {
+			else if(((IProduct)userWarehouse.getStack()[i]).getName().equals("Table")) {
 				tableNo++;
 				i++;
 			}
-			else if(((IProduct)userWarehouse.getStack()[i]).getName() == "Chair") {
+			else if(((IProduct)userWarehouse.getStack()[i]).getName().equals("Chair")) {
 				chairNo++;
 				i++;
 			}
-			else if(((IProduct)userWarehouse.getStack()[i]).getName() == "Bookcase") {
+			else if(((IProduct)userWarehouse.getStack()[i]).getName().equals("Bookcase")) {
 				bookcaseNo++;
 				i++;
 			}      

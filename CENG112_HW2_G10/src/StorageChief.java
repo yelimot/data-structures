@@ -12,30 +12,30 @@ public class StorageChief<T> {
     
     public StorageChief(){} // Constructor
 
-	public void storageFurniture(ProductionLine<T> pLine){ // takes front element from the queue, pushes it to related warehouse (stack).
-		if(!pLine.isEmpty()) {	
-			T product = pLine.dequeue();
-	        if( ((IProduct)product).getName() == "Sofa" ){
+	public void storageFurniture(ProductionLine<T> productLine){ // takes front element from the queue, pushes it to related warehouse (stack).
+		if(!productLine.isEmpty()) {	
+			T product = productLine.dequeue();
+	        if( ((IProduct)product).getName().equals("Sofa")){
 	            sofaWarehouse.push(product);
 	            System.out.println("Storage Chief storing "+((IProduct)product).getName()+", SUCCESS, "+((IProduct)product).getName()+" in "+((IProduct)product).getName()+" warehouse");
 	        }
-	        else if( ((IProduct)product).getName() == "Bed" ){
+	        else if( ((IProduct)product).getName().equals("Bed")){
 	            bedWarehouse.push(product);
 	            System.out.println("Storage Chief storing "+((IProduct)product).getName()+", SUCCESS, "+((IProduct)product).getName()+" in "+((IProduct)product).getName()+" warehouse");
 	        }
-	        else if( ((IProduct)product).getName() == "Chair" ){
+	        else if( ((IProduct)product).getName().equals("Chair")){
 	            chairWarehouse.push(product);
 	            System.out.println("Storage Chief storing "+((IProduct)product).getName()+", SUCCESS, "+((IProduct)product).getName()+" in "+((IProduct)product).getName()+" warehouse");
 	        }
-	        else if( ((IProduct)product).getName() == "Dresser" ){
+	        else if( ((IProduct)product).getName().equals("Dresser")){
 	            dresserWarehouse.push(product);
 	            System.out.println("Storage Chief storing "+((IProduct)product).getName()+", SUCCESS, "+((IProduct)product).getName()+" in "+((IProduct)product).getName()+" warehouse");
 	        }
-	        else if( ((IProduct)product).getName() == "Table" ){
+	        else if( ((IProduct)product).getName().equals("Table")){
 	            tableWarehouse.push(product);
 	            System.out.println("Storage Chief storing "+((IProduct)product).getName()+", SUCCESS, "+((IProduct)product).getName()+" in "+((IProduct)product).getName()+" warehouse");
 	        }
-	        else if( ((IProduct)product).getName() == "Bookcase" ){
+	        else if( ((IProduct)product).getName().equals("Bookcase")){
 	            bookcaseWarehouse.push(product);
 	            System.out.println("Storage Chief storing "+((IProduct)product).getName()+", SUCCESS, "+((IProduct)product).getName()+" in "+((IProduct)product).getName()+" warehouse");
 	        }

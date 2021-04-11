@@ -39,7 +39,7 @@ public class Main {
 
 	        }
 	        else if(activityNo == 1){ // Storage Chief operations
-	            storageChief.storageFurniture(marketingAnalyst.pLine);
+	            storageChief.storageFurniture(marketingAnalyst.productLine);
 	         
 	        }
 	        else if(activityNo == 2){ // Customer operations

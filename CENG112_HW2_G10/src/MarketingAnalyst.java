@@ -1,12 +1,12 @@
 
 public class MarketingAnalyst<T> {
 	
-    public ProductionLine<T> pLine = new ProductionLine<T>(10); // creates productLine for marketing analyst
+    public ProductionLine<T> productLine = new ProductionLine<T>(10); // creates productLine for marketing analyst
 	
 	public MarketingAnalyst(){} // constructor
 
     public void manufactureFurniture(T product){ // manufacture function
-        pLine.enqueue(product); // adds product to the queue
+        productLine.enqueue(product); // adds product to the queue
         System.out.println("MarketingAnalyst requesting "+((IProduct) product).getName()+", SUCCESS, "+
         ((IProduct)product).getName()+" manufactured");
     }
@@ -19,26 +19,26 @@ public class MarketingAnalyst<T> {
 		int chairNo = 0;
 		int bookcaseNo = 0;
 
-		for(int i = 0 ;i<pLine.getQueue().length; i++){
-			if(((IProduct)pLine.getQueue()[i]) ==  null){
+		for(int i = 0 ;i<productLine.getQueue().length; i++){
+			if(((IProduct)productLine.getQueue()[i]) ==  null){
 				continue;
 			}
-			else if(((IProduct)pLine.getQueue()[i]).getName() == "Bed") {
+			else if(((IProduct)productLine.getQueue()[i]).getName().equals("Bed")) {
 				bedNo++;
 			}
-			else if(((IProduct)pLine.getQueue()[i]).getName() == "Sofa") {
+			else if(((IProduct)productLine.getQueue()[i]).getName().equals("Sofa")) {
 				sofaNo++;
 			}
-			else if(((IProduct)pLine.getQueue()[i]).getName() == "Dresser") {
+			else if(((IProduct)productLine.getQueue()[i]).getName().equals("Dresser")) {
 				dresserNo++;
 			}
-			else if(((IProduct)pLine.getQueue()[i]).getName() == "Table") {
+			else if(((IProduct)productLine.getQueue()[i]).getName().equals("Table")) {
 				tableNo++;
 			}
-			else if(((IProduct)pLine.getQueue()[i]).getName() == "Chair") {
+			else if(((IProduct)productLine.getQueue()[i]).getName().equals("Chair")) {
 				chairNo++;
 			}
-			else if(((IProduct)pLine.getQueue()[i]).getName() == "Bookcase") {
+			else if(((IProduct)productLine.getQueue()[i]).getName().equals("Bookcase")) {
 				bookcaseNo++;
 			}
 		}
