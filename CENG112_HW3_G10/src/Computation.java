@@ -59,6 +59,7 @@ public class Computation<T> {
 	public void setNext(Computation<T> next) {
 		this.next = next;
 	}
+	
 		
 	// public String toString();
 	

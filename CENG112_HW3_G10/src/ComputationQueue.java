@@ -4,28 +4,49 @@ public class ComputationQueue<T> implements IPriorityQueue<T> {
 	private Computation<T> lastNode;
 	private int queueLength;
 	private int totalWaitingTime;
-	
-	public void ComputationQueue() {
+	private String name;
+	private int queueNo;
+	private ComputationQueue<T> next;
+
+	public ComputationQueue(String name, int no) {
 		this.firstNode = null;
 		this.lastNode = null;
 		this.queueLength = 0;
 		this.setTotalWaitingTime(0);
+		this.name = name;
+		this.queueNo = no;
 	}
 
-	public Computation<T> getfirstNode() {
+	public int getQueueNo() {
+		return queueNo;
+	}
+
+	public void setQueueNo(int queueNo) {
+		this.queueNo = queueNo;
+	}
+
+	public Computation<T> getFirstNode() {
 		return firstNode;
 	}
 
-	public void setfirstNode(Computation<T> head) {
-		this.firstNode = head;
+	public void setFirstNode(Computation<T> firstNode) {
+		this.firstNode = firstNode;
 	}
 
-	public Computation<T> getlastNode() {
+	public Computation<T> getLastNode() {
 		return lastNode;
 	}
 
-	public void setlastNode(Computation<T> last) {
-		this.lastNode = last;
+	public void setLastNode(Computation<T> lastNode) {
+		this.lastNode = lastNode;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getQueueLength() {
@@ -43,21 +64,7 @@ public class ComputationQueue<T> implements IPriorityQueue<T> {
 	public void setTotalWaitingTime(int totalWaitingTime) {
 		this.totalWaitingTime = totalWaitingTime;
 	}
-	
-	/*
-	// Insert to the queue and increase queueLength.
-	public void insert(Computation<T> newComputation) {
-		if (isEmpty()) {
-			firstNode = newComputation;
-			lastNode = newComputation;
-		} else {
-			firstNode.setNext(newComputation);
-			lastNode = newComputation;
-		}
-		queueLength++;
-	}
-	*/
-	
+
 	public Computation<T> getReferenceTo(Computation<T> entry){
 		boolean found=false;
 		Computation<T> current = firstNode;
@@ -80,10 +87,22 @@ public class ComputationQueue<T> implements IPriorityQueue<T> {
 				enqueue(T);
 				done = true;
 			}
+			/*
+						
+			if(tempComputation1==null) {
+					T.setNext(firstNode.getNext());
+					this.firstNode=T;
+					this.queueLength++;
+					this.totalWaitingTime+=T.getOccupation();
+					done=true;
+				}
+			
+			*/
 			else if (tempComputation2.getProcess().getPriority() > T.getProcess().getPriority()) {
 				if(tempComputation1 == null) {
-					T.setNext(firstNode.getNext());
+					Computation<T> temp = firstNode;
 					this.firstNode = T;
+					firstNode.setNext(temp);
 					this.queueLength++;
 					this.totalWaitingTime += T.getOccupation();
 					done=true;
@@ -135,6 +154,10 @@ public class ComputationQueue<T> implements IPriorityQueue<T> {
 		else
 			return firstNode;
 	}
+	
+	public String toString() {
+		return getClass().getName()+"@"+Integer.toHexString(hashCode());
+	}
 		
 	@SuppressWarnings("unchecked")
 	public T dequeue() {
@@ -164,11 +187,12 @@ public class ComputationQueue<T> implements IPriorityQueue<T> {
 	    lastNode = null;
 	}
 	
+	public ComputationQueue<T> getNext() {
+		return this.next;
+	}
 	
+	public void setNext(ComputationQueue<T> next) {
+		this.next = next;
+	}
 	
-
-
-
-	
-
 }
