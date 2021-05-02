@@ -1,5 +1,7 @@
 
-public class Process implements IProcess {
+public class Process implements IProcess { 
+	// This class is our 'process' class. 
+	// We keep the priority and type of the processes in this class.
 	private String type;
 	private int priority;
 	

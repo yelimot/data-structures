@@ -1,14 +1,16 @@
 
 public class Simulation<T> {
+	// this simulation class constructed according to linked list adt.
+	// each simulation (queue) linked with each other by this linked list fashion.
 	private ComputationQueue<T> headQueue;
 	private int listLength;
 	
-	public Simulation() {
+	public Simulation() { // constructor for simulation class
 		this.headQueue = null;
 		this.listLength = 0;
 	}
 
-	public void insert(ComputationQueue<T> CQ) {
+	public void insert(ComputationQueue<T> CQ) { // adds 'computation queues' to the  simulation
 		if(isEmpty())
 			headQueue = CQ;
 		else {
@@ -25,7 +27,7 @@ public class Simulation<T> {
 		listLength++;
 	}
 	
-	public ComputationQueue<T> getCQ(String name) {
+	public ComputationQueue<T> getCQ(String name) { //returns specific 'computation queue'
 		ComputationQueue<T> var = headQueue;
 		for(int i=0;i<listLength;i++) {
 			if(var.getName() == name)
@@ -36,8 +38,7 @@ public class Simulation<T> {
 		return headQueue;
 	}
 	
-	public boolean isEmpty() {
+	public boolean isEmpty() { // checks whether the simulation is empty.
 		return listLength<1;
 	}
-
 }

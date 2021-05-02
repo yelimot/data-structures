@@ -6,12 +6,12 @@ public class Computation<T> {
 	private int wait; // remaining time to the execution
 	private Computation<T> next; // next computation being held after this
 	
-	/*
+	
 	public Computation(int id, IProcess process, int occupation, int wait) {
 		this(id, process, occupation, wait, null);
 	}
-	*/
 	
+	// constructor for computation class
 	public Computation(int id, IProcess process, int occupation, int wait, Computation<T> next) {
 		this.id = id;
 		this.process = process;
@@ -53,14 +53,19 @@ public class Computation<T> {
 	}
 
 	public Computation<T> getNext() {
-		return next;
+		return this.next;
+	}
+	
+	public Computation<T> getAfter() {
+		if (this.getNext() != null) {
+			return this.getNext();
+		}
+		else
+			return this.getAfter();
 	}
 
 	public void setNext(Computation<T> next) {
 		this.next = next;
 	}
-	
-		
-	// public String toString();
 	
 }

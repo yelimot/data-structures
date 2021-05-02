@@ -1,5 +1,6 @@
 
 public class ComputationQueue<T> implements IPriorityQueue<T> {
+	// The 'computation queue' holds all computations in their order of priority.
 	private Computation<T> firstNode;
 	private Computation<T> lastNode;
 	private int queueLength;
@@ -8,7 +9,7 @@ public class ComputationQueue<T> implements IPriorityQueue<T> {
 	private int queueNo;
 	private ComputationQueue<T> next;
 
-	public ComputationQueue(String name, int no) {
+	public ComputationQueue(String name, int no) { 
 		this.firstNode = null;
 		this.lastNode = null;
 		this.queueLength = 0;
@@ -64,72 +65,46 @@ public class ComputationQueue<T> implements IPriorityQueue<T> {
 	public void setTotalWaitingTime(int totalWaitingTime) {
 		this.totalWaitingTime = totalWaitingTime;
 	}
-
-	public Computation<T> getReferenceTo(Computation<T> entry){
-		boolean found=false;
-		Computation<T> current = firstNode;
-		while(!found && (current!=null)) {
-			if(entry==current)
-				found=true;
-			else
-				current=current.getNext();
-		}
-		return current;
-	}
 	
-	public void insert(Computation<T> T) {
+	public void insert(Computation<T> T) { // adds new computation to the queue by controlling priority of its process.
 		boolean done = false;
-		Computation<T> tempComputation1 = null;
-		Computation<T> tempComputation2;
-		tempComputation2 = getReferenceTo(firstNode);
+		Computation<T> tempTrans1 = null;
+		Computation<T> tempTrans2;
+		tempTrans2 = firstNode;
 		while(!done) {
-			if(tempComputation2==null) {
+			if(tempTrans2 == null) {
 				enqueue(T);
 				done = true;
-			}
-			/*
-						
-			if(tempComputation1==null) {
-					T.setNext(firstNode.getNext());
-					this.firstNode=T;
-					this.queueLength++;
-					this.totalWaitingTime+=T.getOccupation();
-					done=true;
 				}
-			
-			*/
-			else if (tempComputation2.getProcess().getPriority() > T.getProcess().getPriority()) {
-				if(tempComputation1 == null) {
-					Computation<T> temp = firstNode;
+			else if(tempTrans2.getProcess().getPriority()<T.getProcess().getPriority()) {
+				tempTrans1 = tempTrans2;
+				tempTrans2 = tempTrans2.getNext();
+				}
+			else if(tempTrans2.getProcess().getPriority()==T.getProcess().getPriority()) {
+				tempTrans1 = tempTrans2;
+				tempTrans2 = tempTrans2.getNext();
+			}
+			else{
+				if(tempTrans1 == null) {
+					T.setNext(firstNode.getNext());
 					this.firstNode = T;
-					firstNode.setNext(temp);
 					this.queueLength++;
 					this.totalWaitingTime += T.getOccupation();
-					done=true;
+					done = true;
 				}
 				else {
 					T.setWait(this.totalWaitingTime);
-					T.setNext(tempComputation1);
-					tempComputation1.setNext(T);
+					T.setNext(tempTrans2);
+					tempTrans1.setNext(T);
 					this.queueLength++;
 					this.totalWaitingTime += T.getOccupation();
 					done = true;
 				}
 			}
-			else if (tempComputation2.getProcess().getPriority() == T.getProcess().getPriority()) {
-				tempComputation1 = getReferenceTo(tempComputation2);
-				tempComputation2 = getReferenceTo(tempComputation2.getNext());
-			}
-			else {
-				tempComputation1 = getReferenceTo(tempComputation2);
-				tempComputation2 = getReferenceTo(tempComputation2.getNext());
-			}
 		}
 	}
-	 
 
-	public Computation remove() {
-		// Removes first computation and return it.
+	public Computation remove() { // removes first computation and return it.
 		Computation temp = firstNode;
 		if (!isEmpty()) {
 			firstNode = firstNode.getNext();
@@ -148,7 +123,7 @@ public class ComputationQueue<T> implements IPriorityQueue<T> {
 		this.totalWaitingTime += newComer.getOccupation();
 	}
 	
-	public Computation<T> getFront() {
+	public Computation<T> getFront() { // returns front node of the queue
 		if(isEmpty())
 			return null;
 		else
@@ -160,7 +135,7 @@ public class ComputationQueue<T> implements IPriorityQueue<T> {
 	}
 		
 	@SuppressWarnings("unchecked")
-	public T dequeue() {
+	public Computation<T> dequeue() {
 		if(isEmpty())
 			return null;
 		else {
@@ -174,7 +149,7 @@ public class ComputationQueue<T> implements IPriorityQueue<T> {
 			firstNode = this.firstNode.getNext();
 			if(firstNode == null)
 				lastNode = null;
-			return (T)front;
+			return (Computation<T>)front;
 			}
 	}
 	
