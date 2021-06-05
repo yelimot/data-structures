@@ -44,6 +44,20 @@ public class Main {
 		System.out.println("----- 2 -----");
 		bstFoodByPrice.inorderTraverseAscendingFood(bstFoodByPrice.getRoot());
 		
+		// 3) Print the name of the Pizza restaurant that has the shortest delivery time.
+		System.out.println("----- 3 -----");
+		bstRestaurantByDeliveryTime.shortestDeliveryTimePizza(bstRestaurantByDeliveryTime.getRoot());
+		Restaurant fastestPizzaRestaurant = bstRestaurantByDeliveryTime.shortestDeliveryTimePizza(bstRestaurantByDeliveryTime.getRoot());
+		System.out.println(fastestPizzaRestaurant.getName());
+		
+		// 5) List and remove the foods (from Food BST) that are more expensive than 80 TRY
+//		System.out.println("----- 5 -----");
+//		bstFoodByPrice.removeFood(bstFoodByPrice.getRoot());
+		
+		// 6) List and remove the restaurants (from Restaurant BST) that are rated less than 8.0.
+		System.out.println("----- 6 -----");
+		bstRestaurantByRating.removeRestaurant(bstRestaurantByRating.getRoot());
+		
 		// 7) Increase all food prices by 20% (use the updatePrice method).
 		bstFoodByPrice.updatePriceTraversal(bstFoodByPrice.getRoot());
 		System.out.println("----- 7 -----\n" + "Prices in FoodBSTs are updated.");

@@ -266,9 +266,148 @@ public class BST <T> implements SearchTreeInterface<T>{
 		}
 	}
 	
-	public void removeFoodByPrice(BinaryNode<Food> node) {
-		
+	// I created temporary comparison variable;
+	Restaurant tempPizzaRestaurant = new Restaurant("temp", 1.0, " Pizza", 100);
+	// This variable will hold fastest pizza restaurant and returned from the function.
+	BinaryNode<Restaurant> fastestPizzaRestaurant = new BinaryNode<Restaurant>();
+	public Restaurant shortestDeliveryTimePizza(BinaryNode<Restaurant> rootNode) {
+		if (rootNode != null) {
+			if (rootNode.hasLeftChild()) { shortestDeliveryTimePizza(rootNode.getLeftChild()); }
+			if (rootNode.hasRightChild()) { shortestDeliveryTimePizza(rootNode.getRightChild()); }
+			if ((tempPizzaRestaurant.getDeliveryTime() > rootNode.getData().getDeliveryTime()) && (rootNode.getData().getCuisine().equals(" Pizza"))) {
+				tempPizzaRestaurant = rootNode.getData();
+				fastestPizzaRestaurant.setData(rootNode.getData());
+			}
+		}
+		return fastestPizzaRestaurant.getData();
 	}
+	
+	// Finds the node containing the largest entry in a given tree.
+	// rootNode is the root node of the tree.
+	// Returns the node containing the largest entry in the tree.
+	
+//	public void removeFood(BinaryNode<Food> rootNode) {
+//		if (rootNode != null) {
+//
+//			removeFood(rootNode.getRightChild());
+//			removeFood(rootNode.getLeftChild());
+//			if (rootNode.getData().getPrice() > 80.0) {
+//				
+////				System.out.println(rootNode.getData().getName() + "   -   " +
+////						rootNode.getData().getPrice() + "   -   " +
+////													"Removed");
+////				
+////				remove((T) rootNode);
+//				
+//				BinaryNode<Food> removedFood;
+//				removedFood = (BinaryNode<Food>) removeByPrice((T) rootNode);
+//				if (removedFood != null) {
+//					System.out.println(removedFood.getData().getName() + "   -   " +
+//										removedFood.getData().getPrice() + "   -   " +
+//																	"Removed"); }
+//			}
+//		}
+//	}
+	
+	public class ReturnObject {
+		T data;
+		public ReturnObject(T data) {
+			this.data = data;
+		}
+		public T getData() {
+			return data;
+		}
+		public void setData(T data) {
+			this.data = data;
+		}
+	}
+		
+	public T removeByRating(T anEntry) {
+		ReturnObject oldEntry = new ReturnObject(null);
+		BinaryNode<T> newRoot = removeEntryByRating(getRoot(), anEntry, oldEntry);
+		setRoot(newRoot);
+		return oldEntry.getData();
+	} // end remove
+	
+	// (Restaurant)anEntry).getRating() == ((BinaryNode<Restaurant>)rootNode).getData().getRating()
+	
+	private BinaryNode<T> removeEntryByRating(BinaryNode<T> rootNode, T anEntry, ReturnObject oldEntry) {
+		if (rootNode != null) {
+			T rootData = rootNode.getData();
+			// int comparison = anEntry.compareTo(rootData);
+			if (((Restaurant)anEntry).getRating() == ((BinaryNode<Restaurant>)rootNode).getData().getRating()) { // anEntry == root entry
+				oldEntry.setData(rootData);
+				rootNode = removeFromRoot(rootNode);
+			}
+			else if (((Restaurant)anEntry).getRating() > ((BinaryNode<Restaurant>)rootNode).getData().getRating()) { // anEntry < root entry
+				BinaryNode<T> leftChild = rootNode.getLeftChild();
+				BinaryNode<T> subtreeRoot = removeEntryByRating(leftChild, anEntry, oldEntry);
+				rootNode.setLeftChild(subtreeRoot);
+			}
+			else { // anEntry > root entry
+			BinaryNode<T> rightChild = rootNode.getRightChild();
+			// A different way of coding than for left child
+			rootNode.setRightChild(removeEntryByRating(rightChild, anEntry, oldEntry));
+			} // end if
+		} // end if
+		return rootNode;
+	} // end removeEntry
+	
+	private BinaryNode<T> removeFromRoot(BinaryNode<T> rootNode) {
+		// Case 1: rootNode has two children
+		if (rootNode.hasLeftChild() && rootNode.hasRightChild()) {
+			// Find node with largest entry in left subtree
+			BinaryNode<T> leftSubtreeRoot = rootNode.getLeftChild();
+			BinaryNode<T> largestNode = findLargest(leftSubtreeRoot);
+			// Replace entry in root
+			rootNode.setData(largestNode.getData());
+			// Remove node with largest entry in left subtree
+			rootNode.setLeftChild(removeLargest(leftSubtreeRoot));
+		} // end if
+		// Case 2: rootNode has at most one child
+		else if (rootNode.hasRightChild())
+			rootNode = rootNode.getRightChild();
+		else
+			rootNode = rootNode.getLeftChild();
+		// Assertion: If rootNode was a leaf, it is now null
+		return rootNode;
+	} // end removeEntry
+	
+	private BinaryNode<T> findLargest(BinaryNode<T> rootNode) {
+		if (rootNode.hasRightChild())
+		rootNode = findLargest(rootNode.getRightChild());
+		return rootNode;
+	} // end findLargest
+	
+	private BinaryNode<T> removeLargest(BinaryNode<T> rootNode) {
+		if (rootNode.hasRightChild()) {
+			BinaryNode<T> rightChild = rootNode.getRightChild();
+			rightChild = removeLargest(rightChild);
+			rootNode.setRightChild(rightChild);
+		}
+		else
+			rootNode = rootNode.getLeftChild();
+		return rootNode;
+	} // end removeLargest
+	
+	public void removeRestaurant(BinaryNode<Restaurant> rootNode) {
+		if (rootNode != null) {
+			removeRestaurant(rootNode.getRightChild());
+			removeRestaurant(rootNode.getLeftChild());
+			if (rootNode.getData().getRating() < 8.0) {
+//				BinaryNode<Restaurant> removedFood;
+				System.out.println("aaaaaaaaaa");
+				System.out.println(rootNode.getData().getName() + rootNode.getData().getRating());
+				removeByRating((T) rootNode.getData());
+				// removedFood = (BinaryNode<Restaurant>) removeByRating((T) rootNode.getData());
+//				if (removedFood != null) {
+//					System.out.println(removedFood.getData().getName() + "   -   " +
+//										removedFood.getData().getRating() + "   -   " +
+//																	"Removed"); }
+			}
+		}
+	}
+ 
 	
 //	public BinaryNode<Restaurant> shortestDeliveryTimePizza(BinaryNode<Restaurant> rootNode) {
 //		if (rootNode.hasLeftChild()) {
@@ -279,18 +418,6 @@ public class BST <T> implements SearchTreeInterface<T>{
 //				shortestDeliveryTimePizza(rootNode.getLeftChild());
 //		}
 //		return rootNode;
-//	}
-	
-	public BinaryNode<Restaurant> shortestDeliveryTimePizza(BinaryNode<Restaurant> rootNode) {
-		if (rootNode.hasLeftChild()) {
-			if (rootNode.getData().getCuisine().equals(" Pizza")) {
-				rootNode = shortestDeliveryTimePizza(rootNode.getLeftChild());
-			}
-			else
-				shortestDeliveryTimePizza(rootNode.getLeftChild());
-		}
-		return rootNode;
-	}
 	
 //	public BinaryNode<Food> removeByPrice(BinaryNode<Food> rootNode) {
 //		if (rootNode != null) {

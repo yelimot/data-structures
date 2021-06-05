@@ -66,4 +66,5 @@ public class Food implements Orderable {
 		this.stock *= 0.5;
 	}
 
+
 }

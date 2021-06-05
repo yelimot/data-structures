@@ -1,5 +1,5 @@
 
 public interface Orderable {
-	public void updatePrice(double price);
-	public void updateStock(int stock);
+	public void updatePrice();
+	public void updateStock();
 }
