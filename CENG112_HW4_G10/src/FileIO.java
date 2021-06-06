@@ -1,6 +1,4 @@
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -9,6 +7,7 @@ public class FileIO {
 	Food[] foodArray = new Food[20];
 	Restaurant[] restaurantArray = new Restaurant[20];
 	
+	// this method reads from the file, creates the objects by read attributes, store them in two arrays and return one of them (food array).
 	public Food[] foodReader() throws IOException {
 		
 		BufferedReader csvReader = new BufferedReader(new FileReader("CENG112_HW4.csv"));
@@ -30,6 +29,7 @@ public class FileIO {
 	    return foodArray;
 	}
 	
+	// this method returns the restaurant array which filled on previous method
 	public Restaurant[] restaurantReader() {
 		return restaurantArray;
 	}

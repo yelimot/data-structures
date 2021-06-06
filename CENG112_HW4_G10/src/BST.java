@@ -27,8 +27,6 @@ public class BST <T> implements SearchTreeInterface<T>{
 			root.setRightChild(rightTree.root);
 	}
 	
-	
-	
 	public BinaryNode<T> getRoot() {
 		return root;
 	}
@@ -40,10 +38,6 @@ public class BST <T> implements SearchTreeInterface<T>{
 	public void setTree(T rootData,BST<T> right,BST<T> left) {
 		privateSetTree(rootData,right,left);
 	}
-	
-	
-	
-	
 	
 	public T getRootData() {
 		T rootNode = null;
@@ -60,14 +54,17 @@ public class BST <T> implements SearchTreeInterface<T>{
 		root = null;
 	} 	
 	
+	// contains method for checking whether the given object is already exist in tree or not.
 	public boolean containsByRating(T entry) {
 		return getEntryByRating(entry) != null;
 	}
 	
+	// specific for attribute (rating, stock etc.)
 	public T getEntryByRating(T entry) {
 		return findEntryByRating((BinaryNode<T>) getRoot(), entry);
 	}
-
+	
+	// finds the element and returns
 	private T findEntryByRating(BinaryNode<T> rootNode, T entry) {
 		T result = null;
 		
@@ -84,8 +81,9 @@ public class BST <T> implements SearchTreeInterface<T>{
 		return result;
 	}	
 	
-	// * * * * * * * * * * * * * * * * * * * * * * * *
-	
+	// each add method specified for a specific attribute. 
+	// it can be done with a comparable class with some different options
+	// but I left it in this way since it is more obvious to observe the differences
 	public T addByPrice(T newEntry) {
 		T result = null;
 		if (isEmpty())
@@ -100,6 +98,7 @@ public class BST <T> implements SearchTreeInterface<T>{
 		T result = null;
 		Food newFood = (Food)rootNode.getData();
 		
+		// comparison done here by getting value of the specific attribute.
 		if (newFood.getPrice() == ((Food)newEntry).getPrice()) {
 			result = rootNode.getData();
 			rootNode.setData(newEntry);
@@ -225,6 +224,7 @@ public class BST <T> implements SearchTreeInterface<T>{
 		return result;
 	}
 	
+	// method that traverses over the food tree and updates the price
 	public void updatePriceTraversal(BinaryNode<Food> node) {
 		if(node!=null) {
 			updatePriceTraversal(node.getRightChild());
@@ -233,6 +233,7 @@ public class BST <T> implements SearchTreeInterface<T>{
 		}
 	}
 	
+	// method that traverses over the food tree and updates the stock
 	public void updateStockTraversal(BinaryNode<Food> node) {
 		if(node!=null) {
 			updateStockTraversal(node.getRightChild());
@@ -241,7 +242,7 @@ public class BST <T> implements SearchTreeInterface<T>{
 		}
 	}
 	
-	
+	// traversing the food tree ascending (inorder)
 	public void inorderTraverseAscendingFood(BinaryNode<Food> node) {
 		if(node!=null) {
 			inorderTraverseAscendingFood(node.getRightChild());
@@ -250,6 +251,7 @@ public class BST <T> implements SearchTreeInterface<T>{
 		}
 	}
 	
+	// traversing the food tree descending (inorder)
 	public void inorderTraverseDescendingFood(BinaryNode<Food> node) {
 		if(node!=null) {
 			inorderTraverseDescendingFood(node.getLeftChild());
@@ -258,10 +260,20 @@ public class BST <T> implements SearchTreeInterface<T>{
 		}
 	}
 	
+	// traversing the restaurant tree ascending (inorder)
+	public void inorderTraverseAscendingRestaurant(BinaryNode<Restaurant> node) {
+		if(node!=null) {
+			inorderTraverseAscendingRestaurant(node.getRightChild());
+			System.out.println(node.getData().getName() + "   -   " + node.getData().getRating());
+			inorderTraverseAscendingRestaurant(node.getLeftChild());
+		}
+	}
+	
+	// traversing the restaurant tree descending (inorder)
 	public void inorderTraverseDescendingRestaurant(BinaryNode<Restaurant> node) {
 		if(node!=null) {
 			inorderTraverseDescendingRestaurant(node.getLeftChild());
-			System.out.println(node.getData().getName() + "   -   " + node.getData().getRating() + "   -   " + node.getData().getCuisine());
+			System.out.println(node.getData().getName() + "   -   " + node.getData().getRating());
 			inorderTraverseDescendingRestaurant(node.getRightChild());
 		}
 	}
@@ -270,6 +282,8 @@ public class BST <T> implements SearchTreeInterface<T>{
 	Restaurant tempPizzaRestaurant = new Restaurant("temp", 1.0, " Pizza", 100);
 	// This variable will hold fastest pizza restaurant and returned from the function.
 	BinaryNode<Restaurant> fastestPizzaRestaurant = new BinaryNode<Restaurant>();
+	
+	// this method finds the pizza restaurant that has the shortest delivery time.
 	public Restaurant shortestDeliveryTimePizza(BinaryNode<Restaurant> rootNode) {
 		if (rootNode != null) {
 			if (rootNode.hasLeftChild()) { shortestDeliveryTimePizza(rootNode.getLeftChild()); }
@@ -282,34 +296,26 @@ public class BST <T> implements SearchTreeInterface<T>{
 		return fastestPizzaRestaurant.getData();
 	}
 	
-	// Finds the node containing the largest entry in a given tree.
-	// rootNode is the root node of the tree.
-	// Returns the node containing the largest entry in the tree.
+	// I created temporary comparison variable;
+	Food tempCoffee = new Food("temp", 1.0, 1, tempPizzaRestaurant);
+	// This variable will hold the coffee with the highest amount of stock and returned from the function.
+	BinaryNode<Food> mostStockedCoffee = new BinaryNode<Food>();
 	
-//	public void removeFood(BinaryNode<Food> rootNode) {
-//		if (rootNode != null) {
-//
-//			removeFood(rootNode.getRightChild());
-//			removeFood(rootNode.getLeftChild());
-//			if (rootNode.getData().getPrice() > 80.0) {
-//				
-////				System.out.println(rootNode.getData().getName() + "   -   " +
-////						rootNode.getData().getPrice() + "   -   " +
-////													"Removed");
-////				
-////				remove((T) rootNode);
-//				
-//				BinaryNode<Food> removedFood;
-//				removedFood = (BinaryNode<Food>) removeByPrice((T) rootNode);
-//				if (removedFood != null) {
-//					System.out.println(removedFood.getData().getName() + "   -   " +
-//										removedFood.getData().getPrice() + "   -   " +
-//																	"Removed"); }
-//			}
-//		}
-//	}
+	// this method finds the coffee with the highest amount of stock.
+	public Food theMostCoffeeStock(BinaryNode<Food> rootNode) {
+		if (rootNode != null) {
+			if (rootNode.hasLeftChild()) { theMostCoffeeStock(rootNode.getLeftChild()); }
+			if (rootNode.hasRightChild()) { theMostCoffeeStock(rootNode.getRightChild()); }
+			if ((tempCoffee.getStock() < rootNode.getData().getStock()) && (rootNode.getData().getRestaurant().getCuisine().equals(" Coffee"))) {
+				tempCoffee = rootNode.getData();
+				mostStockedCoffee.setData(rootNode.getData());
+			}
+		}
+		return mostStockedCoffee.getData();
+	}
 	
-	public class ReturnObject {
+	// inner class for :remove method
+	private class ReturnObject {
 		T data;
 		public ReturnObject(T data) {
 			this.data = data;
@@ -334,7 +340,7 @@ public class BST <T> implements SearchTreeInterface<T>{
 	private BinaryNode<T> removeEntryByRating(BinaryNode<T> rootNode, T anEntry, ReturnObject oldEntry) {
 		if (rootNode != null) {
 			T rootData = rootNode.getData();
-			// int comparison = anEntry.compareTo(rootData);
+			// comparison is done here by getting rating
 			if (((Restaurant)anEntry).getRating() == ((BinaryNode<Restaurant>)rootNode).getData().getRating()) { // anEntry == root entry
 				oldEntry.setData(rootData);
 				rootNode = removeFromRoot(rootNode);
@@ -348,6 +354,36 @@ public class BST <T> implements SearchTreeInterface<T>{
 			BinaryNode<T> rightChild = rootNode.getRightChild();
 			// A different way of coding than for left child
 			rootNode.setRightChild(removeEntryByRating(rightChild, anEntry, oldEntry));
+			} // end if
+		} // end if
+		return rootNode;
+	} // end removeEntry
+	
+	// remove methods are specific for food and restaurant, because they have different comparison mechanisms
+	public T removeByPrice(T anEntry) {
+		ReturnObject oldEntry = new ReturnObject(null);
+		BinaryNode<T> newRoot = removeEntryByPrice(getRoot(), anEntry, oldEntry);
+		setRoot(newRoot);
+		return oldEntry.getData();
+	} // end remove
+	
+	private BinaryNode<T> removeEntryByPrice(BinaryNode<T> rootNode, T anEntry, ReturnObject oldEntry) {
+		if (rootNode != null) {
+			T rootData = rootNode.getData();
+			// comparison is done here by getting price
+			if (((Food)anEntry).getPrice() == ((BinaryNode<Food>)rootNode).getData().getPrice()) { // anEntry == root entry
+				oldEntry.setData(rootData);
+				rootNode = removeFromRoot(rootNode);
+			}
+			else if (((Food)anEntry).getPrice() > ((BinaryNode<Food>)rootNode).getData().getPrice()) { // anEntry < root entry
+				BinaryNode<T> leftChild = rootNode.getLeftChild();
+				BinaryNode<T> subtreeRoot = removeEntryByPrice(leftChild, anEntry, oldEntry);
+				rootNode.setLeftChild(subtreeRoot);
+			}
+			else { // anEntry > root entry
+			BinaryNode<T> rightChild = rootNode.getRightChild();
+			// A different way of coding than for left child
+			rootNode.setRightChild(removeEntryByPrice(rightChild, anEntry, oldEntry));
 			} // end if
 		} // end if
 		return rootNode;
@@ -390,77 +426,41 @@ public class BST <T> implements SearchTreeInterface<T>{
 		return rootNode;
 	} // end removeLargest
 	
+	
+	// remove methods are specific for food and restaurant, because they have different comparison mechanisms
 	public void removeRestaurant(BinaryNode<Restaurant> rootNode) {
 		if (rootNode != null) {
-			removeRestaurant(rootNode.getRightChild());
 			removeRestaurant(rootNode.getLeftChild());
 			if (rootNode.getData().getRating() < 8.0) {
-//				BinaryNode<Restaurant> removedFood;
-				System.out.println("aaaaaaaaaa");
-				System.out.println(rootNode.getData().getName() + rootNode.getData().getRating());
-				removeByRating((T) rootNode.getData());
-				// removedFood = (BinaryNode<Restaurant>) removeByRating((T) rootNode.getData());
-//				if (removedFood != null) {
-//					System.out.println(removedFood.getData().getName() + "   -   " +
-//										removedFood.getData().getRating() + "   -   " +
-//																	"Removed"); }
+				Restaurant removedFood;
+				removedFood = (Restaurant) removeByRating((T) rootNode.getData());
+				if (removedFood != null) {
+					System.out.println(removedFood.getName() + "   -   " +
+										removedFood.getRating() + "   -   " +
+																	"Removed"); 
+				}
 			}
+			removeRestaurant(rootNode.getRightChild());
+		}
+	}
+
+	// remove methods are specific for food and restaurant, because they have different comparison mechanisms
+	public void removeFood(BinaryNode<Food> rootNode) {
+		if (rootNode != null) {
+			removeFood(rootNode.getRightChild());
+			if (rootNode.getData().getPrice() > 80.0) {
+				Food removedFood;
+				removedFood = (Food) removeByPrice((T) rootNode.getData());
+				if (removedFood != null) {
+					System.out.println(removedFood.getName() + "   -   " +
+										removedFood.getPrice() + "   -   " +
+																	"Removed"); 
+				}
+			}
+			removeFood(rootNode.getLeftChild());
 		}
 	}
  
-	
-//	public BinaryNode<Restaurant> shortestDeliveryTimePizza(BinaryNode<Restaurant> rootNode) {
-//		if (rootNode.hasLeftChild()) {
-//			if (rootNode.getData().getCuisine().equals(" Pizza")) {
-//				rootNode = shortestDeliveryTimePizza(rootNode.getLeftChild());
-//			}
-//			else
-//				shortestDeliveryTimePizza(rootNode.getLeftChild());
-//		}
-//		return rootNode;
-	
-//	public BinaryNode<Food> removeByPrice(BinaryNode<Food> rootNode) {
-//		if (rootNode != null) {
-//			Food rootData = rootNode.getData();
-//			double comparisonPrice = 80.0;
-//			if (comparisonPrice >= rootData.getPrice()) {
-//				BinaryNode<Food> rightChild = rootNode.getRightChild();
-//				rootNode.setRightChild(removeByPrice(rightChild));
-//			}
-//			else if {
-//				
-//				
-//			}
-//		}
-//	}
-	
-	
-
-
-//		
-////		Restaurant tempNode = null;
-////		if(node!=null) {
-////			shortestDeliveryTimePizza(node.getLeftChild());
-////			if (node.getData().getCuisine().equals(" Pizza")) {
-////				tempNode = node.getData();
-////			}
-////			shortestDeliveryTimePizza(node.getRightChild());
-////		}
-////		return (Restaurant) tempNode;
-//		
-//		BinaryNode<Restaurant> tempNode = node;
-//		tempNode.setData(node.getData());
-//		if(node!=null) {
-//			shortestDeliveryTimePizza(node.getLeftChild());
-//			shortestDeliveryTimePizza(node.getRightChild());
-//			if (node.getData().getCuisine() == " Pizza") {
-//				tempNode.setData(node.getData());
-//			System.out.println(tempNode.getData().getCuisine());
-//			}
-//		}
-//	}
-	
-
 	@Override
 	// I already implemented this method with by different (byPrice, byStock...) options.
 	public T add(T entry) {
@@ -476,12 +476,14 @@ public class BST <T> implements SearchTreeInterface<T>{
 	}
 
 	@Override
+	// I already implemented this method with by different type of objects.
 	public T getEntry(T entry) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	// I already implemented this method with by different type of objects.
 	public boolean contains(T entry) {
 		// TODO Auto-generated method stub
 		return false;

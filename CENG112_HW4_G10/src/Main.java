@@ -7,30 +7,29 @@ public class Main {
 		
 		Food[] foods = fileReader.foodReader();
 		Restaurant[] restaurants = fileReader.restaurantReader();
-		
-//		for (int i = 0; i<20; i++) {
-//			System.out.println(foods[i].getName());
-//			System.out.println(restaurants[i].getName());
-//		}
 		 
 		// Creating the binary search trees with respect to different attributes
 		// such as price, stock, restaurant rating, and delivery time.
 		
+		// food tree by price
 		BST<Food> bstFoodByPrice = new BST<Food>();
 		for (int i = 0; i<20; i++) {
 			bstFoodByPrice.addByPrice(foods[i]);
 		}	
 		
+		// food tree by stock
 		BST<Food> bstFoodByStock = new BST<Food>();
 		for (int i = 0; i<20; i++) {
 			bstFoodByStock.addByStock(foods[i]);
 		}
 		
+		// restaurant tree by rating
 		BST<Restaurant> bstRestaurantByRating = new BST<Restaurant>();
 		for (int i = 0; i<20; i++) {
 			bstRestaurantByRating.addByRating(restaurants[i]);
 		}
 		
+		// restaurant tree by delivery time
 		BST<Restaurant> bstRestaurantByDeliveryTime = new BST<Restaurant>();
 		for (int i = 0; i<20; i++) {
 			bstRestaurantByDeliveryTime.addByTime(restaurants[i]);
@@ -46,13 +45,17 @@ public class Main {
 		
 		// 3) Print the name of the Pizza restaurant that has the shortest delivery time.
 		System.out.println("----- 3 -----");
-		bstRestaurantByDeliveryTime.shortestDeliveryTimePizza(bstRestaurantByDeliveryTime.getRoot());
 		Restaurant fastestPizzaRestaurant = bstRestaurantByDeliveryTime.shortestDeliveryTimePizza(bstRestaurantByDeliveryTime.getRoot());
-		System.out.println(fastestPizzaRestaurant.getName());
+		System.out.println(fastestPizzaRestaurant.getName() + "   " + fastestPizzaRestaurant.getDeliveryTime());
 		
+		// 4) Print the name of the Coffee with the highest amount of stock.
+		System.out.println("----- 4 -----");
+		Food theMostCoffee = bstFoodByStock.theMostCoffeeStock(bstFoodByStock.getRoot());
+		System.out.println(theMostCoffee.getName() + "   " + theMostCoffee.getStock());
+
 		// 5) List and remove the foods (from Food BST) that are more expensive than 80 TRY
-//		System.out.println("----- 5 -----");
-//		bstFoodByPrice.removeFood(bstFoodByPrice.getRoot());
+		System.out.println("----- 5 -----");
+		bstFoodByPrice.removeFood(bstFoodByPrice.getRoot());
 		
 		// 6) List and remove the restaurants (from Restaurant BST) that are rated less than 8.0.
 		System.out.println("----- 6 -----");
@@ -74,10 +77,5 @@ public class Main {
 		System.out.println("----- 10 -----");
 		bstFoodByPrice.inorderTraverseAscendingFood(bstFoodByPrice.getRoot());
 		
-//		
-//		
-//		
-//		System.out.println("----- 3 -----");
-//		bstRestaurantByDeliveryTime.shortestDeliveryTimePizza(bstRestaurantByDeliveryTime.getRoot());
 	}
 }
