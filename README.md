@@ -19,4 +19,20 @@ Assignments covers the topics of:
 * Iterators, Comparators
 * Binary Search Trees
 
-Throughout the course, my groupmate for these assignments was [Ramazan Arslan](https://github.com/Ramazan-Arslan).
+Concepts and topics covered along the course:
+
+* Data Abstraction
+* Queues and Stacks
+* Analysis of Algorithms
+* Recursive Data Structures: Linked Lists and Trees
+* Elementary Sorts: Selection Sort, Insertion Sort, and Shellsort
+* Mergesort
+* Quicksort
+* Heaps and Priority Queues
+* Symbol Tables and Binary Search
+* Binaary Search Trees
+* Balanced Search Trees
+* Hash Tables
+* Graph Representation and Traversal
+
+Throughout the course, my groupmate for the assignments was [Ramazan Arslan](https://github.com/Ramazan-Arslan).
