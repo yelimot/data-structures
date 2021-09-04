@@ -1,0 +1,21 @@
+fName,fPrice,fStock,rName,rRating,rCuisine,rDelivery
+Croissant,19.50,102, Bravo Patisserie,9.3, Dessert,20
+Cheesecake,22.50,64, Bravo Patisserie,9.3, Dessert,20
+Big Mac,29.99,108, McDonalds,7.5, Burger,45
+McChicken,27.99,122, McDonalds,7.5, Burger,45
+Big King,24.99,62, Burger King,8.1, Burger,40
+King Chicken,22.99,80, Burger King,8.1, Burger,40
+Whopper,28.99,104, Burger King,8.1, Burger,40
+Americano,18.50,256, Starbucks,8.9, Coffee,25
+Latte,19.00,240, Starbucks,8.9, Coffee,25
+Cappuccino,20.50,160, Starbucks,8.9, Coffee,25
+California Rolls,55.00,58, Sushitto,9.0, Far East Cuisine,50
+Philadelphia Rolls,80.00,82, Sushitto,9.0, Far East Cuisine,50
+Shrimp Noodles,45.00,70, Red Dragon,8.5, Far East Cuisine,60
+Chicken Noodles,40.00,74, Red Dragon,8.5, Far East Cuisine,60
+Peking Roast Duck,180.00,44, Red Dragon,8.5, Far East Cuisine,60
+Pizza Margherita,79.99,48, Ristorante Pizzeria Venedik,9.8, Pizza,35
+Pizza Alla Romana,99.99,34, Ristorante Pizzeria Venedik,9.8, Pizza,35
+Pizza Carpaccio,109.99,42, Ristorante Pizzeria Venedik,9.8, Pizza,35
+Italiano Pizza,59.99,66, Domino's Pizza,7.2, Pizza,30
+New York Pizza,49.99,56, Domino's Pizza,7.2, Pizza,30
