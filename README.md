@@ -30,7 +30,7 @@ Concepts and topics covered along the course:
 * Quicksort
 * Heaps and Priority Queues
 * Symbol Tables and Binary Search
-* Binaary Search Trees
+* Binary Search Trees
 * Balanced Search Trees
 * Hash Tables
 * Graph Representation and Traversal
