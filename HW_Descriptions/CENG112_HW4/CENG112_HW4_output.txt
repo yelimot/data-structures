@@ -1,0 +1,79 @@
+----------------- 1 -----------------
+Ristorante Pizzeria Venedik       9.8
+Bravo Patisserie                  9.3
+Sushitto                          9.0
+Starbucks                         8.9
+Red Dragon                        8.5
+Burger King                       8.1
+McDonalds                         7.5
+Domino's Pizza                    7.2
+
+----------------- 2 -----------------
+Americano              18.50      256
+Latte                  19.00      240
+Croissant              19.50      102
+Cappuccino             20.50      160
+Cheesecake             22.50      64
+King Chicken           22.99      80
+Big King               24.99      62
+McChicken              27.99      122
+Whopper                28.99      104
+Big Mac                29.99      108
+Chicken Noodles        40.00      74
+Shrimp Noodles         45.00      70
+New York Pizza         49.99      56
+California Rolls       55.00      58
+Italiano Pizza         59.99      66
+Pizza Margherita       79.99      48
+Philadelphia Rolls     80.00      82
+Pizza Alla Romana      99.99      34
+Pizza Carpaccio        109.99     42
+Peking Roast Duck      180.00     44
+
+----------------- 3 -----------------
+Domino's Pizza         30
+
+----------------- 4 -----------------
+Americano              256
+
+----------------- 5 -----------------
+Pizza Alla Romana      99.99   Removed
+Pizza Carpaccio        109.99  Removed
+Peking Roast Duck      180.00  Removed
+
+----------------- 6 -----------------
+McDonalds              7.5     Removed
+Domino's Pizza         7.2     Removed
+
+----------------- 7 -----------------
+Prices in FoodBSTs are updated.
+
+----------------- 8 -----------------
+Stocks in FoodBSTs are updated.
+
+----------------- 9 -----------------
+Ristorante Pizzeria Venedik       9.8
+Bravo Patisserie                  9.3
+Sushitto                          9.0
+Starbucks                         8.9
+Red Dragon                        8.5
+Burger King                       8.1
+
+----------------- 10 -----------------
+Americano            22.20        128
+Latte                22.80        120
+Croissant            23.40        51
+Cappuccino           24.60        80
+Cheesecake           27.00        32
+King Chicken         27.59        40
+Big King             29.99        31
+McChicken            33.59        61
+Whopper              34.79        52
+Big Mac              35.99        54
+Chicken Noodles      48.00        37
+Shrimp Noodles       54.00        35
+New York Pizza       59.99        28
+California Rolls     66.00        29
+Italiano Pizza       71.99        33
+Pizza Margherita     95.99        24
+Philadelphia Rolls   96.00        41
